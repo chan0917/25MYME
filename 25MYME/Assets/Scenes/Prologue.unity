@@ -487,6 +487,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 79219e93a38ef9b45b24363a7df89c2c, type: 3}
   - {fileID: 21300000, guid: 462bce353213c8940a15b946c3300d6a, type: 3}
   - {fileID: 21300000, guid: cf4e66f33ae7f2c429cfb46b30b8375e, type: 3}
+  - {fileID: 21300000, guid: 1fd6c2ddf40c8e74b90b3cf5ae0738ff, type: 3}
+  - {fileID: 21300000, guid: 93da6ebbf8c73e7459ee7c684e685955, type: 3}
+  - {fileID: 21300000, guid: 07ab398b0f0daf840b372af73a58b766, type: 3}
+  - {fileID: 21300000, guid: fc823e3f70c28be4290b04cd0699f9c7, type: 3}
+  - {fileID: 21300000, guid: 81b3505d81b0fc64590e157bc767983a, type: 3}
+  - {fileID: 21300000, guid: 3d2017f3af0d8ed4481027bdd568aa32, type: 3}
   displayTime: 7
   nextSceneName: SampleScene
 --- !u!4 &1413666800
