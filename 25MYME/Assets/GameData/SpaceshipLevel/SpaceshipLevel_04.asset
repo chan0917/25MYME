@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "\uC6B0\uC8FC\uC120\uC744 \uB808\uBCA8 4\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
   requirements:
     materials:
-    - materialType: 10
+    - materialType: 11
       requiredAmount: 1
       materialIcon: {fileID: 0}
     goldCost: 0
@@ -35,5 +35,5 @@ MonoBehaviour:
     specialAbilities: []
     bonusResources: []
     rewardDescription: "\uCCB4\uB825 +20, \uC18D\uB3C4 +2"
-  levelIcon: {fileID: 21300000, guid: 95412b6099632e241986f99c2eb92b39, type: 3}
+  levelIcon: {fileID: 21300000, guid: 2801816884de67349bdaee41a06c3e5f, type: 3}
   levelColor: {r: 1, g: 1, b: 1, a: 1}
