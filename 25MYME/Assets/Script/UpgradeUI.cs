@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -100,11 +102,18 @@ public class UpgradeUI : MonoBehaviour
     //upgradeBtn
     public void TryLevelUp()
     {
-        levelManager.TryLevelUp();
+        bool work = levelManager.TryLevelUp();
+
+        if (work == false)
+        {
+            FindAnyObjectByType<CameraShake>().TriggerSmallShake();
+        }
 
         sclapMetalText.text = $"°íÃ¶: {resourceManager.GetResourceAmount(SclapMetal)}";
         NickelText.text = $"´ÏÄ¶: {resourceManager.GetResourceAmount(Nickel)}";
         AsciedText.text = $"¿°¼®: {resourceManager.GetResourceAmount(Ascied)}";
         MeteoriteText.text = $"¿îÃ¶: {resourceManager.GetResourceAmount(Meteorite)}";
+
+       
     }
 }

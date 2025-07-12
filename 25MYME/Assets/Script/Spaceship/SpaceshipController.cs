@@ -209,6 +209,7 @@ public class SpaceshipController : MonoBehaviour
 
     void CreateCollisionEffect(Vector3 position, float collisionSpeed = 0f, float bounceMultiplier = 1f)
     {
+        FindAnyObjectByType<CameraShake>().TriggerSmallShake();
         // 디버깅 정보 출력
         Debug.Log($"Collision - Speed: {collisionSpeed:F1}/{maxSpeed:F1} ({(collisionSpeed / maxSpeed) * 100:F0}%), " +
                  $"Bounce Multiplier: {bounceMultiplier:F2}x, " +
