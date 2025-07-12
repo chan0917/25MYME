@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CraftingTable
   m_EditorClassIdentifier: 
   recipes:
-  - outputResource: 7
+  - outputResource: 3
     outputAmount: 1
     inputResources:
     - resourceType: 1

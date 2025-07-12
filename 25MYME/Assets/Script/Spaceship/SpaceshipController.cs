@@ -282,9 +282,13 @@ public class SpaceshipController : MonoBehaviour
     public bool IsReverseThrusting => isReverseThrusting;
     public float ThrustForce => thrustForce;
 
+
+    public bool OnGizmo = false;
     // 디버그용 기즈모
     void OnDrawGizmos()
     {
+        if (!OnGizmo) { return; }
+
         // 우주선 위치와 방향
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 0.5f);

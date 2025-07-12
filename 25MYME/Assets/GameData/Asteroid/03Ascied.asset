@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9db535c5d8cffb545b94b79e8fda4a21, type: 3}
-  m_Name: TestAsteroid
+  m_Name: 03Ascied
   m_EditorClassIdentifier: 
-  asteroidName: Test
+  asteroidName: "\uC5FC\uC11D"
   asteroidType: 0
-  description: 
-  requiredLevel: 1
+  description: "\uC0C8\uB85C \uC0DD\uC131\uB41C \uC6B4\uC11D\uC785\uB2C8\uB2E4."
+  requiredLevel: 4
   miningTime: 3
   energyCost: 10
+  mass: 28
+  drag: 10
   resourceDrops:
-  - resourceType: 1
-    dropChance: 1
+  - resourceType: 11
+    dropChance: 0.8
     minAmount: 1
-    maxAmount: 3
+    maxAmount: 2
     dropEffectSprite: {fileID: 0}
-    dropEffectColor: {r: 0, g: 0, b: 0, a: 0}
-  spawnWeight: 1
-  asteroidSprite: {fileID: 0}
+    dropEffectColor: {r: 1, g: 1, b: 1, a: 1}
+  spawnWeight: 0.3
+  minSpawnZone: 0
+  maxSpawnZone: 50
+  asteroidSprite: {fileID: 21300000, guid: 01b367d07f0a04f41b79f594ded7d3fb, type: 3}
   asteroidColor: {r: 1, g: 1, b: 1, a: 1}
   miningSound: {fileID: 0}
   depletedSound: {fileID: 0}

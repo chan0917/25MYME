@@ -14,7 +14,12 @@ public enum ResourceType
     ProtectionStone, // 보호석
     LuckyCharm,     // 행운의 부적
     Equipment,      // 장비
-    Fragment        // 파편
+    Fragment,        // 파편
+
+    SclapMetal,
+    Nickel,
+    Ascied,
+    Meteorite
 }
 
 public enum AsteroidType
@@ -41,6 +46,17 @@ public class ResourceDrop
     public Sprite dropEffectSprite;
     public Color dropEffectColor = Color.white;
 
+    // 이제 아이콘과 색상은 ResourceDatabase에서 자동으로 가져옴
+    public Sprite GetIcon(ResourceDatabase database)
+    {
+        return database.GetResourceIcon(resourceType);
+    }
+
+    public Color GetColor(ResourceDatabase database)
+    {
+        return database.GetResourceColor(resourceType);
+    }
+
     public int GetRandomAmount()
     {
         return Random.Range(minAmount, maxAmount + 1);
@@ -64,24 +80,38 @@ public class AsteroidData : ScriptableObject
     [Header("필요 레벨")]
     public int requiredLevel = 1; // 채굴 가능한 최소 레벨
 
-    [Header("채굴 설정")]
+    [Header("채굴 설정(사용안함)")]
     public float miningTime = 3f; // 채굴 소요 시간
     public int energyCost = 10;   // 에너지 소모량
+
+    [Header("물리 설정")]
+    public float mass = 1f; // 질량 (리지드바디에 적용)
+    public float drag = 0.5f; // 드래그 (선택사항)
 
     [Header("드랍 테이블")]
     public List<ResourceDrop> resourceDrops = new List<ResourceDrop>();
 
-    [Header("생성 확률")]
+    [Header("스폰 설정")]
     [Range(0f, 1f)]
-    public float spawnWeight = 1f; // 생성 가중치 (높을수록 자주 생성)
+    public float spawnWeight = 1f; // 같은 구간 내에서의 상대적 확률
+    [Range(0f, 100f)]
+    public float minSpawnZone = 0f; // 스폰 가능한 최소 구간 (%) - 중심에서의 거리
+    [Range(0f, 100f)]
+    public float maxSpawnZone = 100f; // 스폰 가능한 최대 구간 (%) - 중심에서의 거리
 
-    [Header("비주얼 (선택사항)")]
+    [Header("비주얼")]
     public Sprite asteroidSprite;
     public Color asteroidColor = Color.white;
 
-    [Header("사운드 (선택사항)")]
+    [Header("사운드")]
     public AudioClip miningSound;
     public AudioClip depletedSound;
+
+    // 지정된 거리가 이 운석의 스폰 구간에 포함되는지 확인
+    public bool CanSpawnAtDistance(float distancePercent)
+    {
+        return distancePercent >= minSpawnZone && distancePercent <= maxSpawnZone;
+    }
 
     public List<ResourceDrop> GetDroppedResources()
     {
@@ -91,15 +121,12 @@ public class AsteroidData : ScriptableObject
         {
             if (drop.ShouldDrop())
             {
-                // 드랍되는 자원의 복사본 생성 (수량 재계산)
                 var droppedResource = new ResourceDrop
                 {
                     resourceType = drop.resourceType,
-                    dropChance = 1f, // 이미 드랍 확정
+                    dropChance = 1f,
                     minAmount = drop.GetRandomAmount(),
-                    maxAmount = drop.GetRandomAmount(),
-                    dropEffectSprite = drop.dropEffectSprite,
-                    dropEffectColor = drop.dropEffectColor
+                    maxAmount = drop.GetRandomAmount()
                 };
                 droppedResources.Add(droppedResource);
             }

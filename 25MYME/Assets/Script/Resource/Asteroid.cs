@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Asteroid : MonoBehaviour
 {
@@ -22,6 +23,21 @@ public class Asteroid : MonoBehaviour
         asteroidData = data;
         isCollected = false;
         UpdateVisual();
+        //StartCoroutine(InitAnim());
+    }
+
+    public IEnumerator InitAnim()
+    {
+        float animTime = 0.5f;
+        Vector3 goalScale = transform.localScale;
+
+        while (animTime > 0)
+        {
+            animTime -= Time.deltaTime;
+            float progress = 1f - (animTime / 0.5f);
+            transform.localScale = Vector3.Lerp(Vector3.zero, goalScale, progress);
+            yield return null;
+        }
     }
 
     public bool TryCollect(ResourceManager resourceManager)
@@ -36,14 +52,14 @@ public class Asteroid : MonoBehaviour
         }
 
         // 에너지 체크
-        if (!resourceManager.HasResource(ResourceType.Gold, asteroidData.energyCost))
-        {
-            Debug.Log("에너지가 부족합니다!");
-            return false;
-        }
+        //if (!resourceManager.HasResource(ResourceType.Gold, asteroidData.energyCost))
+        //{
+        //    Debug.Log("에너지가 부족합니다!");
+        //    return false;
+        //}
 
         // 에너지 소모
-        resourceManager.ConsumeResource(ResourceType.Gold, asteroidData.energyCost);
+        //resourceManager.ConsumeResource(ResourceType.Gold, asteroidData.energyCost);
 
         // 자원 드랍
         var droppedResources = asteroidData.GetDroppedResources();
@@ -100,12 +116,12 @@ public class Asteroid : MonoBehaviour
     }
 
     // 마우스 클릭으로 수집 (테스트용)
-    void OnMouseDown()
-    {
-        var resourceManager = FindAnyObjectByType<ResourceManager>();
-        if (resourceManager != null)
-        {
-            TryCollect(resourceManager);
-        }
-    }
+    //void OnMouseDown()
+    //{
+    //    var resourceManager = FindAnyObjectByType<ResourceManager>();
+    //    if (resourceManager != null)
+    //    {
+    //        TryCollect(resourceManager);
+    //    }
+    //}
 }

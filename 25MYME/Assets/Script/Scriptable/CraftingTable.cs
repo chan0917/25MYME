@@ -19,13 +19,20 @@ public class MultiResourceCost
 {
     public List<ResourceCost> costs = new List<ResourceCost>();
 
-    // 골드 + 강화석 조합 예시
-    public static MultiResourceCost CreateGoldAndStone(int gold, int stone)
+    public void AddCost(ResourceType type, int amount)
     {
-        var cost = new MultiResourceCost();
-        cost.costs.Add(new ResourceCost(ResourceType.Gold, gold));
-        cost.costs.Add(new ResourceCost(ResourceType.UpgradeStone, stone));
-        return cost;
+        costs.Add(new ResourceCost(type, amount));
+    }
+
+    public bool HasCost(ResourceType type)
+    {
+        return costs.Exists(c => c.resourceType == type);
+    }
+
+    public int GetCost(ResourceType type)
+    {
+        var cost = costs.Find(c => c.resourceType == type);
+        return cost?.amount ?? 0;
     }
 }
 
