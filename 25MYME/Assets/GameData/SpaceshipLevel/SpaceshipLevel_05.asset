@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d51c4649f51e27646b4e70e4f5fc50b5, type: 3}
-  m_Name: SpaceshipLevel_02
+  m_Name: SpaceshipLevel_05
   m_EditorClassIdentifier: 
-  level: 2
-  levelName: "\uB808\uBCA8 2"
-  description: "\uC6B0\uC8FC\uC120\uC744 \uB808\uBCA8 2\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
+  level: 6
+  levelName: "\uB808\uBCA8 6"
+  description: "\uC6B0\uC8FC\uC120\uC744 \uB808\uBCA8 6\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
   requirements:
     materials:
-    - materialType: 9
+    - materialType: 11
       requiredAmount: 1
       materialIcon: {fileID: 0}
     goldCost: 0
@@ -35,5 +35,5 @@ MonoBehaviour:
     specialAbilities: []
     bonusResources: []
     rewardDescription: "\uCCB4\uB825 +20, \uC18D\uB3C4 +2"
-  levelIcon: {fileID: 21300000, guid: 2c5c2bdc01ddc1544a12129c12bb6945, type: 3}
+  levelIcon: {fileID: 21300000, guid: 2801816884de67349bdaee41a06c3e5f, type: 3}
   levelColor: {r: 1, g: 1, b: 1, a: 1}
