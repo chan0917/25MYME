@@ -104,8 +104,12 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
+    public bool BlockRot;
+
     void HandleRotation()
     {
+        if (BlockRot) { return; }
+
         float rotationInput = 0f;
 
         if (Input.GetKey(leftKey))
@@ -239,6 +243,12 @@ public class SpaceshipController : MonoBehaviour
                 thrustSound.Stop();
             }
         }
+    }
+
+    public void Move(Vector3 dir, float power)
+    {
+        Vector3 bounceImpulse = dir * power;
+        rb.AddForce(bounceImpulse, ForceMode.Impulse);
     }
 
     // 현재 속도 비율 반환 (UI나 다른 스크립트에서 사용)

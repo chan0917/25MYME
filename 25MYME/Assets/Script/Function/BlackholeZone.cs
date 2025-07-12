@@ -186,11 +186,7 @@ public class BlackholeZone : MonoBehaviour
         Vector3 gravityForce = directionToCenter * finalGravityForce;
         obj.rigidbody.AddForce(gravityForce, ForceMode.Force);
 
-        // 회전력 적용 (작은 객체만)
-        if (obj.mass < 10f)
-        {
-            ApplyRotationalForce(obj, objPos, centerPos, gravityStrength);
-        }
+        ApplyRotationalForce(obj, objPos, centerPos, gravityStrength);
     }
 
     void ApplyRotationalForce(AffectedObject obj, Vector3 objPos, Vector3 centerPos, float gravityStrength)

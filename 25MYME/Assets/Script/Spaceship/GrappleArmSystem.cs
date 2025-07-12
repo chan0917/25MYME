@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using static UnityEngine.GraphicsBuffer;
 
 #region 집게팔 상태 및 이벤트
 public enum GrappleState
@@ -78,6 +80,7 @@ public class GrappleArmSystem : MonoBehaviour
     public SpaceshipLevelManager levelManager; // 스탯 참조용
     public Camera playerCamera;                // 마우스 위치 계산용
     public AsteroidPoolManager asteroidPoolManager;
+    public LineRenderer lr;
 
     [Header("설정")]
     public GrappleSettings settings;
@@ -113,17 +116,32 @@ public class GrappleArmSystem : MonoBehaviour
     private float totalCooldownTime;
     private Coroutine grappleCoroutine;
     private List<Asteroid> nearbyAsteroids = new List<Asteroid>();
+    private Quaternion originGrapRot;
 
+    private Animator animator;
     void Start()
     {
+        animator = grappleArmTransform.GetComponent<Animator>();
+        controller = GetComponent<SpaceshipController>();
+        originGrapRot = grappleArmTransform.localRotation;
+
         InitializeGrapple();
     }
 
+    public bool BlockGrap;
+
     void Update()
     {
+        if(BlockGrap) { return; }
+
+        lr.SetPosition(0, mid.position);
+        lr.SetPosition(1, grappleArmTransform.position);
+
         HandleInput();
         UpdateCooldown();
         UpdateGrappleVisual();
+
+        
     }
 
     void InitializeGrapple()
@@ -132,7 +150,7 @@ public class GrappleArmSystem : MonoBehaviour
             levelManager = FindAnyObjectByType<SpaceshipLevelManager>();
 
         if (asteroidPoolManager == null)
-            asteroidPoolManager = FindAnyObjectByType<AsteroidPoolManager>();   
+            asteroidPoolManager = FindAnyObjectByType<AsteroidPoolManager>();
 
         if (playerCamera == null)
             playerCamera = Camera.main;
@@ -271,8 +289,13 @@ public class GrappleArmSystem : MonoBehaviour
         return currentSpeed * (1f - speedReduction * settings.weightSpeedMultiplier);
     }
 
+    public Transform mid;
+    private SpaceshipController controller;
     IEnumerator GrappleSequence()
     {
+        lr.enabled = true;
+        controller.BlockRot = true;
+        animator.Play("GrapStart");
         // 1단계: 발사
         yield return StartCoroutine(LaunchPhase());
 
@@ -286,6 +309,9 @@ public class GrappleArmSystem : MonoBehaviour
         // 4단계: 돌아오기
         yield return StartCoroutine(ReturnPhase());
 
+        lr.enabled = false;
+        controller.BlockRot = false;
+        animator.Play("GrapEnd");
         // 5단계: 쿨타임
         SetState(GrappleState.Cooldown);
         currentCooldown = settings.additionalCooldown;
@@ -299,6 +325,9 @@ public class GrappleArmSystem : MonoBehaviour
         float journeyLength = Vector3.Distance(startPosition, targetPosition);
         float journeyTime = journeyLength / currentSpeed;
         float elapsedTime = 0f;
+
+
+        //grappleArmTransform.localRotation.
 
         while (elapsedTime < journeyTime)
         {
@@ -418,6 +447,8 @@ public class GrappleArmSystem : MonoBehaviour
 
             yield return null;
         }
+
+        grappleArmTransform.localRotation = originGrapRot;
 
         if (grappleArmTransform != null)
         {

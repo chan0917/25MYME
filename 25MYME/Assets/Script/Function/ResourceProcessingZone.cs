@@ -50,6 +50,7 @@ public class ResourceProcessingZone : MonoBehaviour
             UpgradeUI.OpenUI();
             // 우주선 진입
             isSpaceshipInside = true;
+            grappleSystem.BlockGrap = true;
             Debug.Log("우주선이 자원 처리 구역에 진입했습니다!");
 
             // 운석을 들고 있다면 즉시 처리
@@ -63,6 +64,7 @@ public class ResourceProcessingZone : MonoBehaviour
             UpgradeUI.CloseUI();
             // 우주선 나감
             isSpaceshipInside = false;
+            grappleSystem.BlockGrap = false;
             Debug.Log("우주선이 자원 처리 구역을 떠났습니다!");
         }
     }
