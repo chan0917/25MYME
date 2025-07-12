@@ -131,8 +131,6 @@ public class AsteroidPoolManager : MonoBehaviour
         {
             if (asteroidData == null) continue;
 
-            // 레벨 체크
-            if (asteroidData.requiredLevel > playerLevel) continue;
 
             // 구간 체크
             if (asteroidData.CanSpawnAtDistance(distancePercent))

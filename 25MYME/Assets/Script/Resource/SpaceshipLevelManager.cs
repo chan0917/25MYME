@@ -69,6 +69,7 @@ public class SpaceshipLevelManager : MonoBehaviour
     [Header("참조")]
     public ResourceManager resourceManager;
     public SpaceshipController spaceshipController;
+    public GrappleArmSystem grappleArmSystem;
 
     [Header("현재 스탯값")]
     public float currentHealth = 100f;
@@ -87,6 +88,9 @@ public class SpaceshipLevelManager : MonoBehaviour
 
         if (spaceshipController == null)
             spaceshipController = FindAnyObjectByType<SpaceshipController>();
+
+        if (grappleArmSystem == null)
+            grappleArmSystem = FindAnyObjectByType<GrappleArmSystem>();
 
         ApplyStatsToSpaceship();
 
@@ -193,6 +197,9 @@ public class SpaceshipLevelManager : MonoBehaviour
             field.SetValue(spaceshipController, finalSpeed);
             Debug.Log($"우주선 속도 적용: {finalSpeed}");
         }
+
+        grappleArmSystem.settings.maxRange = stats.GetFinalStat(SpaceshipStatType.CollectRange);
+        Debug.Log($"우주선 고리 적용: {stats.GetFinalStat(SpaceshipStatType.CollectRange)}");
 
         // 다른 스탯들도 필요에 따라 적용 가능
         // 예: thrustForce, rotationSpeed 등

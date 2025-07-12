@@ -15,21 +15,21 @@ MonoBehaviour:
   asteroidName: "\uC5FC\uC11D"
   asteroidType: 0
   description: "\uC0C8\uB85C \uC0DD\uC131\uB41C \uC6B4\uC11D\uC785\uB2C8\uB2E4."
-  requiredLevel: 4
+  requiredLevel: 3
   miningTime: 3
   energyCost: 10
   mass: 28
   drag: 10
   resourceDrops:
   - resourceType: 11
-    dropChance: 0.8
+    dropChance: 1
     minAmount: 1
     maxAmount: 2
     dropEffectSprite: {fileID: 0}
     dropEffectColor: {r: 1, g: 1, b: 1, a: 1}
   spawnWeight: 0.3
   minSpawnZone: 0
-  maxSpawnZone: 50
+  maxSpawnZone: 70
   asteroidSprite: {fileID: 21300000, guid: 01b367d07f0a04f41b79f594ded7d3fb, type: 3}
   asteroidColor: {r: 1, g: 1, b: 1, a: 1}
   miningSound: {fileID: 0}

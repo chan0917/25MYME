@@ -109,11 +109,15 @@ public class UpgradeUI : MonoBehaviour
             FindAnyObjectByType<CameraShake>().TriggerSmallShake();
         }
 
-        sclapMetalText.text = $"°íÃ¶: {resourceManager.GetResourceAmount(SclapMetal)}";
-        NickelText.text = $"´ÏÄ¶: {resourceManager.GetResourceAmount(Nickel)}";
-        AsciedText.text = $"¿°¼®: {resourceManager.GetResourceAmount(Ascied)}";
-        MeteoriteText.text = $"¿îÃ¶: {resourceManager.GetResourceAmount(Meteorite)}";
 
-       
+        GetNextLevelRequirements();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseUI();
+        }
     }
 }

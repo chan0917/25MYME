@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51c4649f51e27646b4e70e4f5fc50b5, type: 3}
   m_Name: SpaceshipLevel_05
   m_EditorClassIdentifier: 
-  level: 6
+  level: 5
   levelName: "\uB808\uBCA8 6"
   description: "\uC6B0\uC8FC\uC120\uC744 \uB808\uBCA8 6\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
   requirements:
     materials:
     - materialType: 12
-      requiredAmount: 2
+      requiredAmount: 1
+      materialIcon: {fileID: 0}
+    - materialType: 10
+      requiredAmount: 1
+      materialIcon: {fileID: 0}
+    - materialType: 11
+      requiredAmount: 1
       materialIcon: {fileID: 0}
     goldCost: 0
     minimumLevel: 1
@@ -30,6 +36,10 @@ MonoBehaviour:
       description: 
     - statType: 1
       bonusValue: 2
+      isPercentage: 0
+      description: 
+    - statType: 2
+      bonusValue: 1
       isPercentage: 0
       description: 
     specialAbilities: []

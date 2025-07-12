@@ -32,6 +32,10 @@ MonoBehaviour:
       bonusValue: 2
       isPercentage: 0
       description: 
+    - statType: 2
+      bonusValue: 2
+      isPercentage: 0
+      description: 
     specialAbilities: []
     bonusResources: []
     rewardDescription: "\uCCB4\uB825 +20, \uC18D\uB3C4 +2"

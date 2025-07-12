@@ -22,13 +22,17 @@ public class CircleLineRenderer : MonoBehaviour
         armSystem = FindAnyObjectByType<GrappleArmSystem>();
         radius = armSystem.settings.maxRange;
 
-        CreateCircle();
         lastPosition = transform.position;
-        lastRadius = radius;
+        lastRadius = armSystem.settings.maxRange;
+        CreateCircle();
+        
     }
 
     void Update()
     {
+        radius = armSystem.settings.maxRange;
+        lastRadius = armSystem.settings.maxRange;
+        CreateCircle();
         // 위치나 크기가 변경되었을 때만 업데이트 (성능 최적화)
         if (updateEveryFrame ||
             Vector3.Distance(lastPosition, transform.position) > 0.01f ||
@@ -41,11 +45,13 @@ public class CircleLineRenderer : MonoBehaviour
 
             if (Mathf.Abs(lastRadius - radius) > 0.01f)
             {
+                lastPosition = transform.position;
+                lastRadius = radius;
                 CreateCircle(); // 크기가 변경되면 재생성
             }
 
             lastPosition = transform.position;
-            lastRadius = radius;
+            lastRadius = armSystem.settings.maxRange;
         }
     }
 

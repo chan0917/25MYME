@@ -28,7 +28,7 @@ MonoBehaviour:
     dropEffectSprite: {fileID: 0}
     dropEffectColor: {r: 1, g: 1, b: 1, a: 1}
   spawnWeight: 0.5
-  minSpawnZone: 0
+  minSpawnZone: 40
   maxSpawnZone: 100
   asteroidSprite: {fileID: 21300000, guid: 5c3920a28df03c44da20368c4ce2d917, type: 3}
   asteroidColor: {r: 1, g: 1, b: 1, a: 1}

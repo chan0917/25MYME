@@ -500,6 +500,12 @@ public class GrappleArmSystem : MonoBehaviour
         // 이미 운석을 들고 있다면 불가능
         if (HasCarriedAsteroid()) return false;
 
+        if (levelManager.currentLevel < asteroid.asteroidData.requiredLevel)
+        {
+            FindAnyObjectByType<CameraShake>().TriggerSmallShake();
+            return false;
+        }
+
         // 무게 체크
         return asteroid.asteroidData.mass / 10 <= settings.maxCarryWeight;
     }

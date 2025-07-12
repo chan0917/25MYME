@@ -18,6 +18,7 @@ public class SpaceshipController : MonoBehaviour
     [Header("Visual Effects")]
     public GameObject thrustEffect;          // 추진 이펙트
     public AudioSource thrustSound;          // 추진 사운드
+    public SpriteRenderer playerSprite;
 
     [Header("Collision Settings")]
     public float bounceForce = 10f;          // 충돌 반발력
