@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
@@ -42,6 +43,7 @@ public class UpgradeUI : MonoBehaviour
 
     public void OpenUI()
     {
+        
         UIAnimator.Play("OpenUI");
         GetNextLevelRequirements();
     }
@@ -107,6 +109,10 @@ public class UpgradeUI : MonoBehaviour
         if (work == false)
         {
             FindAnyObjectByType<CameraShake>().TriggerSmallShake();
+        }
+        else
+        {
+            FindAnyObjectByType<InGameCanvas>().Fix();
         }
 
 

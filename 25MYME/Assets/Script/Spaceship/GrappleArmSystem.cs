@@ -502,6 +502,7 @@ public class GrappleArmSystem : MonoBehaviour
 
         if (levelManager.currentLevel < asteroid.asteroidData.requiredLevel)
         {
+            FindAnyObjectByType<InGameCanvas>().PickFail();
             FindAnyObjectByType<CameraShake>().TriggerSmallShake();
             return false;
         }

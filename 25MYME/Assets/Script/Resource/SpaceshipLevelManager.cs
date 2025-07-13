@@ -74,6 +74,7 @@ public class SpaceshipLevelManager : MonoBehaviour
     [Header("현재 스탯값")]
     public float currentHealth = 100f;
     public float maxHealth = 100f;
+    public TMPro.TMP_Text healthText;
 
     private Dictionary<int, SpaceshipLevelData> levelDataTable;
 
@@ -201,6 +202,8 @@ public class SpaceshipLevelManager : MonoBehaviour
         grappleArmSystem.settings.maxRange = stats.GetFinalStat(SpaceshipStatType.CollectRange);
         Debug.Log($"우주선 고리 적용: {stats.GetFinalStat(SpaceshipStatType.CollectRange)}");
 
+        spaceshipController.playerSprite.sprite = GetCurrentLevelData().levelIcon;
+
         // 다른 스탯들도 필요에 따라 적용 가능
         // 예: thrustForce, rotationSpeed 등
     }
@@ -242,17 +245,33 @@ public class SpaceshipLevelManager : MonoBehaviour
     {
         currentHealth = Mathf.Max(0, currentHealth - damage);
         Debug.Log($"데미지 {damage} 받음. 현재 체력: {currentHealth}/{maxHealth}");
+
+        FindAnyObjectByType<InGameCanvas>().TakeDamage();
+        if (currentHealth <= 0)
+        {
+            Dead();
+        }
     }
 
     public void Heal(float amount)
     {
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
         Debug.Log($"체력 {amount} 회복. 현재 체력: {currentHealth}/{maxHealth}");
+        healthText.text = $"{currentHealth}";
     }
 
     public bool IsDead()
     {
         return currentHealth <= 0;
+    }
+
+    public void Dead()
+    {
+        healthText.text = $"{currentHealth}";
+        currentHealth = 0;
+        //zoom out, interaction block, drop all
+        // death view
+        //respawn 
     }
 
     public float GetHealthRatio()
