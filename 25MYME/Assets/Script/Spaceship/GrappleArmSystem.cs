@@ -696,8 +696,8 @@ public class GrappleArmSystem : MonoBehaviour
         Debug.Log("집게팔 발사!");
 
         // 이펙트 재생
-        // if (launchEffect != null) launchEffect.Play();
-        // if (launchSound != null) launchSound.Play();
+        if (launchEffect != null) launchEffect.Play();
+        if (launchSound != null) launchSound.Play();
 
         events.OnLaunch?.Invoke();
     }
@@ -713,8 +713,8 @@ public class GrappleArmSystem : MonoBehaviour
         Debug.Log("그랩 성공!");
 
         // 이펙트 재생
-        // if (grabSuccessEffect != null) grabSuccessEffect.Play();
-        // if (grabSuccessSound != null) grabSuccessSound.Play();
+        if (grabSuccessEffect != null) grabSuccessEffect.Play();
+        if (grabSuccessSound != null) grabSuccessSound.Play();
 
         events.OnGrabSuccess?.Invoke();
     }
@@ -723,9 +723,9 @@ public class GrappleArmSystem : MonoBehaviour
     {
         Debug.Log("그랩 실패!");
 
-        // 이펙트 재생
-        // if (grabFailEffect != null) grabFailEffect.Play();
-        // if (grabFailSound != null) grabFailSound.Play();
+        //이펙트 재생
+        if (grabFailEffect != null) grabFailEffect.Play();
+        if (grabFailSound != null) grabFailSound.Play();
 
         events.OnGrabFailed?.Invoke();
     }
